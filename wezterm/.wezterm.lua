@@ -55,7 +55,7 @@ local function set_window_frame()
         border_left_width = "0.28cell",
         border_right_width = "0.28cell",
         border_bottom_height = "0.15cell",
-        border_top_height = "0.15cell",
+        -- border_top_height = "0.3cell",
     }
 end
 
@@ -112,17 +112,20 @@ end
 -- Apply configurations
 config.window_background_image_hsb = set_window_background_image_hsb()
 config.window_background_image = get_user_home() .. "/Pictures/Polygon-Wallpapers/1 - M7ZZrv8.jpg"
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.96
 config.macos_window_background_blur = 85
 config.window_padding = set_window_padding()
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font("Hack Nerd Font Mono", { weight = "Medium", stretch = "Expanded" })
 config.font_size = 12
 config.window_decorations = "RESIZE"
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 config.window_frame = set_window_frame()
 config.keys = set_keys()
 config.default_cursor_style = "SteadyBar"
 config.cursor_thickness = 2
+config.initial_cols = 140
+config.initial_rows = 45
+config.enable_scroll_bar = true
 
 return config
