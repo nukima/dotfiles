@@ -115,7 +115,7 @@ config.window_background_image = get_user_home() .. "/Pictures/Polygon-Wallpaper
 config.window_background_opacity = 0.96
 config.macos_window_background_blur = 85
 config.window_padding = set_window_padding()
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "PaleNightHC"
 config.font = wezterm.font("Hack Nerd Font Mono", { weight = "Medium", stretch = "Expanded" })
 config.font_size = 12
 config.window_decorations = "RESIZE"
