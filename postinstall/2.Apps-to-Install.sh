@@ -29,7 +29,7 @@ sudo apt install -y libqt5help5 libqt5opengl5 libxcb-cursor0
 ## If your DE (Desktop Environment) is not GNOME, download the package below. Otherwise, use the KDE-Connect browser extension.
 # sudo apt install -y kdeconnect
 ## If you want to change the XFCE Lock Screen Wallpaper, install this package:
-sudo apt install -y lightdm-gtk-greeter-settings
+# sudo apt install -y lightdm-gtk-greeter-settings
 ## To use Java based applications like LibreOffice extensions and/or develop java apps, install the JRE or JDK packages below.
 ## JRE/JDK 17 from OpenJDK
 ### sudo apt install -y openjdk-17-jdk
@@ -64,7 +64,7 @@ sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
 ## Papirus Icons
 sudo add-apt-repository ppa:papirus/papirus -y
 ## qBittorrent
-sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
+# sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 ## Git
 sudo add-apt-repository ppa:git-core/ppa -y
 ## Cryptomator
@@ -114,10 +114,8 @@ sudo apt install ca-certificates curl apt-transport-https
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY -o /etc/apt/keyrings/keys.anydesk.com.asc
 sudo chmod a+r /etc/apt/keyrings/keys.anydesk.com.asc
-
 # Add the AnyDesk apt repository
 echo "deb [signed-by=/etc/apt/keyrings/keys.anydesk.com.asc] https://deb.anydesk.com all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list > /dev/null
-
 # Update apt caches and install the AnyDesk client
 sudo apt update
 sudo apt install anydesk
@@ -130,7 +128,6 @@ sudo apt-get install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
-
 # Add the repository to Apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
