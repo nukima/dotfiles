@@ -1,86 +1,86 @@
 #!/bin/bash
 
-# Setup Script
+# === SAFER SYSTEM CLEANUP & SETUP SCRIPT ===
+# Target: Ubuntu 24.04 with GNOME
+# Author: Your future self who doesn’t want to break shit
 
-# Uninstall Bloatware Apps
-sudo apt --purge remove -y yelp*
-sudo apt --purge remove -y gnome-logs
-sudo apt --purge remove -y seahorse
-sudo apt --purge remove -y gnome-contacts
-sudo apt --purge remove -y geary
-# sudo apt --purge remove -y libreoffice*
-sudo apt --purge remove -y gnome-weather
-sudo apt --purge remove -y ibus-mozc
-sudo apt --purge remove -y mozc-utils-gui
-sudo apt --purge remove -y gucharmap
-sudo apt --purge remove -y simple-scan
-sudo apt --purge remove -y popsicle
-sudo apt --purge remove -y popsicle-gtk
-sudo apt --purge remove -y totem*
-sudo apt --purge remove -y lm-sensors*
-sudo apt --purge remove -y xfburn
-sudo apt --purge remove -y xsane*
-sudo apt --purge remove -y hv3
-sudo apt --purge remove -y exfalso
-sudo apt --purge remove -y parole
-sudo apt --purge remove -y quodlibet
-sudo apt --purge remove -y xterm
-sudo apt --purge remove -y redshift*
-sudo apt --purge remove -y drawing
-sudo apt --purge remove -y hexchat*
-sudo apt --purge remove -y thunderbird*
-sudo apt --purge remove -y transmission*
-sudo apt --purge remove -y transmission-gtk*
-sudo apt --purge remove -y transmission-common*
-sudo apt --purge remove -y webapp-manager
-sudo apt --purge remove -y celluloid
-sudo apt --purge remove -y hypnotix
-sudo apt --purge remove -y rhythmbox*
-sudo apt --purge remove -y librhythmbox-core10*
-sudo apt --purge remove -y rhythmbox-data
-sudo apt --purge remove -y mintbackup
-sudo apt --purge remove -y mintreport
-sudo apt --purge remove -y aisleriot
-sudo apt --purge remove -y gnome-mahjongg
-sudo apt --purge remove -y gnome-mines
-sudo apt --purge remove -y quadrapassel
-sudo apt --purge remove -y gnome-sudoku
-sudo apt --purge remove -y cheese*
-sudo apt --purge remove -y pitivi
-sudo apt --purge remove -y gnome-sound-recorder
-sudo apt --purge remove -y remmina*
-sudo apt --purge remove -y gimp*
-sudo apt --purge remove -y zorin-windows-app-support-installation-shortcut
-sudo apt --purge remove -y firefox-esr
-sudo apt --purge remove -y gnome-todo
-sudo apt --purge remove -y brasero*
-sudo apt --purge remove -y evolution*
-sudo apt --purge remove -y gnome-photos*
+# --- Bloatware (safe to remove) ---
+echo "[INFO] Removing optional bloat packages..."
 
-# System Update and Upgrade
+safe_remove_list=(
+  yelp
+  gnome-logs
+  gnome-weather
+  seahorse
+  gnome-contacts
+  geary
+  ibus-mozc
+  mozc-utils-gui
+  simple-scan
+  popsicle
+  popsicle-gtk
+  xfburn
+  xsane
+  hv3
+  exfalso
+  parole
+  quodlibet
+  redshift
+  drawing
+  hexchat
+  transmission-gtk
+  webapp-manager
+  celluloid
+  hypnotix
+  rhythmbox
+  aisleriot
+  gnome-mahjongg
+  gnome-mines
+  quadrapassel
+  gnome-sudoku
+  pitivi
+  gnome-sound-recorder
+  remmina
+  zorin-windows-app-support-installation-shortcut
+)
+
+for pkg in "${safe_remove_list[@]}"; do
+  echo "[INFO] Trying to remove: $pkg"
+  sudo apt --purge remove -y "$pkg" || echo "[WARN] $pkg failed or not installed"
+done
+
+# DO NOT REMOVE THESE (unless you know what you're doing)
+# - gnome-shell
+# - ubuntu-desktop
+# - gdm3
+# - firefox (linked to session sometimes)
+# - nautilus
+# - gnome-settings-daemon
+# - anything evolution or rhythmbox-related (unless you’ve replaced their deps)
+
+# --- Update & Upgrade ---
+echo "[INFO] Updating and upgrading packages..."
 sudo apt update
 sudo apt install --fix-missing -y
 sudo apt upgrade --allow-downgrades -y
 sudo apt full-upgrade --allow-downgrades -y
 
-# System Backup
-## sudo apt-add-repository ppa:teejee2008/ppa -y
-sudo apt update
+# --- Timeshift for Backups ---
+echo "[INFO] Installing Timeshift (backup tool)..."
 sudo apt install -y timeshift
 
-# System Clean Up
+# --- Flatpak Support ---
+echo "[INFO] Setting up Flatpak and Flathub..."
+sudo apt install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# --- Final Cleanup ---
+echo "[INFO] Final cleanup..."
 sudo apt install -f
 sudo apt autoremove -y
 sudo apt autoclean
 sudo apt clean
 
-# Flatpak Support
-sudo apt install -y flatpak
-sudo apt install -y gnome-software-plugin-flatpak
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-# End of Script
-
-# Display Installation Complete Message
-echo "All good now :)" 
-echo "Please, restart the computer, backup your system using Timeshift (if you installed it and want to) and then run the 2nd Script to install all your Apps."
+# --- Done ---
+echo -e "\n✅ All done!"
+echo "👉 You can now reboot and use Timeshift to make a system snapshot."
