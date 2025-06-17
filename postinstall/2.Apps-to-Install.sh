@@ -122,6 +122,24 @@ echo "deb [signed-by=/etc/apt/keyrings/keys.anydesk.com.asc] https://deb.anydesk
 sudo apt update
 sudo apt install anydesk
 
+#docker, docker compose
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install docker-compose-plugin
+
 ### System Update
 sudo apt update -qq
 ### PPA's Apps from Other Sources installation
@@ -174,6 +192,8 @@ sudo snap refresh
 # Snap Apps
 ## Eclipse IDE
 ### sudo snap install eclipse --classic
+## VScode
+sudo snap install --classic code
 
 # Snap Clean Up
 sudo rm -rf /var/lib/snapd/cache/*
@@ -192,7 +212,7 @@ wget -c "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 ## LibreOffice LangPack for pt-BR
 # wget -c "https://tdf.c3sl.ufpr.br/libreoffice/stable/25.2.3/deb/x86_64/LibreOffice_25.2.3_Linux_x86-64_deb_helppack_pt-BR.tar.gz"
 ## VSCode
-wget -c "https://vscode.download.prss.microsoft.com/dbazure/download/stable/17baf841131aa23349f217ca7c570c76ee87b957/code_1.99.3-1744761595_amd64.deb"
+# wget -c "https://vscode.download.prss.microsoft.com/dbazure/download/stable/17baf841131aa23349f217ca7c570c76ee87b957/code_1.99.3-1744761595_amd64.deb"
 ## VirtualBox
 # wget -c "https://download.virtualbox.org/virtualbox/7.1.8/virtualbox-7.1_7.1.8-168469~Ubuntu~jammy_amd64.deb"
 ## VirtualBox Extension Pack
@@ -211,7 +231,7 @@ wget -c "https://vscode.download.prss.microsoft.com/dbazure/download/stable/17ba
 ### wget -c "https://github.com/angryip/ipscan/releases/download/3.9.1/ipscan_3.9.1_amd64.deb"
 
 ### Installing the wget Programs
-sudo dpkg -i google-chrome-stable_current_amd64.deb code_1.99.3-1744761595_amd64.deb virtualbox-7.1_7.1.8-168469~Ubuntu~jammy_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb 
 #### gitkraken-amd64.deb local-8.0.0-linux.deb ipscan_3.9.1_amd64.deb
 
 ## AutoKey Installation
