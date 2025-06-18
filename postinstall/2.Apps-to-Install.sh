@@ -118,7 +118,7 @@ sudo chmod a+r /etc/apt/keyrings/keys.anydesk.com.asc
 echo "deb [signed-by=/etc/apt/keyrings/keys.anydesk.com.asc] https://deb.anydesk.com all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list > /dev/null
 # Update apt caches and install the AnyDesk client
 sudo apt update
-sudo apt install anydesk
+sudo apt install anydesk -y
 
 #docker, docker compose
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
