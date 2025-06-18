@@ -96,7 +96,7 @@ sudo apt install -y git
 ## ibus-bamboo
 sudo add-apt-repository ppa:bamboo-engine/ibus-bamboo
 sudo apt-get update
-sudo apt-get install ibus ibus-bamboo --install-recommends
+sudo apt-get install ibus ibus-bamboo --install-recommends -y
 ibus restart
 # Đặt ibus-bamboo làm bộ gõ mặc định
 env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
@@ -110,7 +110,7 @@ env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['Bamb
 ## AnyDesk
 # Add the AnyDesk GPG key
 sudo apt update
-sudo apt install ca-certificates curl apt-transport-https
+sudo apt install ca-certificates curl apt-transport-https -y
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY -o /etc/apt/keyrings/keys.anydesk.com.asc
 sudo chmod a+r /etc/apt/keyrings/keys.anydesk.com.asc
@@ -124,7 +124,7 @@ sudo apt install anydesk
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 # Add Docker's official GPG key:
 sudo apt-get update
-sudo apt-get install ca-certificates curl
+sudo apt-get install ca-certificates curl -y
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
@@ -134,8 +134,8 @@ echo \
   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo apt-get install docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+sudo apt-get install docker-compose-plugin -y
 
 ### System Update
 sudo apt update -qq
