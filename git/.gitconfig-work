@@ -1,0 +1,5 @@
+[user]
+    name = manhnk
+    email = manhnk@crownx.masangroup.com
+[url "https://github.com/"]
+    insteadOf = git@github.com:

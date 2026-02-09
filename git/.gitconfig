@@ -1,0 +1,16 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = nukima
+	email = manhnguyen.tth@gmail.com
+# 1. Use SSH for Personal (Global default)
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+# 2. Force HTTPS for Work (Override the SSH default above)
+# This ensures that even if you copy an SSH link for a work repo, 
+# Git will silently convert it to HTTPS for you.
+[includeIf "gitdir:~/projects/work/"]
+    path = ~/.gitconfig-work
+[credential]
+	helper = osxkeychain
