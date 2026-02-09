@@ -11,3 +11,8 @@ symbol = "☁️ "
 
 [python]
 symbol = "🐍 "
+
+[conda]
+symbol = "🅒 "
+format = "[$symbol$environment]($style) " # Removed "via" for a cleaner look
+ignore_base = true # Hides the prompt if you are in the 'base' env
